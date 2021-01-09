@@ -1,0 +1,3 @@
+https://www.pluralsight.com/guides/interpreting-data-using-statistical-models-python (Linear Regression)
+
+4

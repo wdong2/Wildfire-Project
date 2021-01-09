@@ -1,0 +1,126 @@
+Correlation r latitude: ia_success           = -0.132
+
+Correlation r latitude: max_size             = 0.024
+Correlation r latitude: first_size           = 0.046
+
+Correlation r latitude: first_status_held    = -0.183
+
+Correlation r latitude: sec_to_uc            = 0.103
+
+Correlation r latitude: aircraft_n_total     = 0.059
+Correlation r latitude: aircraft_hr_total    = 0.080
+Correlation r latitude: n_firefighters       = -0.024
+Correlation r latitude: n_non_firefighters   = 0.042
+Correlation r latitude: hr_firefighters      = -0.010
+Correlation r latitude: drop_amount_retardant = 0.045
+Correlation r latitude: drop_amount_water    = 0.019
+Correlation r latitude: drop_amount_total    = 0.038
+Correlation r latitude: n_fire_past_1        = 0.031
+Correlation r latitude: n_fire_past_7        = -0.025
+Correlation r latitude: n_fire_past_30       = 0.005
+Correlation r latitude: response_time        = -0.005
+
+Correlation r latitude: general_cause        = 0.227  (the higher latitude, the more lightning cause)
+
+Correlation r latitude: assessment_size      = 0.046
+Correlation r latitude: fire_spread_rate     = 0.095
+
+Correlation r latitude: temperature          = 0.160  (unusual)
+
+Correlation r latitude: relative_humidity    = 0.033
+Correlation r latitude: wind_speed           = 0.011
+Correlation r latitude: equipment_Transportation = -0.041
+Correlation r latitude: equipment_Water_Delivery = -0.060
+Correlation r latitude: equipment_Fire_Guard_Building = -0.045
+Correlation r latitude: equipment_Base_Camp  = -0.044
+
+Correlation r latitude: wstation_dry_bulb_temperature = 0.159
+
+Correlation r latitude: wstation_relative_humidity = 0.153
+
+Correlation r latitude: wstation_wind_speed_kmh = 0.025
+Correlation r latitude: wstation_precipitation = 0.017
+Correlation r latitude: wstation_fine_fuel_moisture_code = -0.021
+Correlation r latitude: wstation_duff_moisture_code = -0.000
+
+Correlation r latitude: wstation_drought_code = 0.282
+
+Correlation r latitude: wstation_build_up_index = 0.073
+Correlation r latitude: wstation_initial_spread_index = -0.069
+Correlation r latitude: wstation_fire_weather_index = -0.022
+Correlation r latitude: wstation_daily_severity_rating = -0.029
+Correlation r latitude: fuelgrid_C           = 0.036
+Correlation r latitude: fuelgrid_D           = 0.038
+Correlation r latitude: fuelgrid_M           = -0.034
+Correlation r latitude: fuelgrid_Nonfuel     = 0.063
+
+Correlation r latitude: fuelgrid_O           = -0.145
+
+Correlation r latitude: fuelgrid_S           = -0.047
+Correlation r latitude: fuelgrid_Unclassified = nan  (Some problem/error here)
+Correlation r latitude: fuelgrid_Water       = 0.027
+Correlation r latitude: fbp_CFB              = 0.032
+Correlation r latitude: fbp_CFC              = 0.029
+Correlation r latitude: fbp_HFI              = -0.007
+Correlation r latitude: fbp_RAZ              = 0.007
+Correlation r latitude: fbp_ROS              = -0.073
+Correlation r latitude: fbp_SFC              = 0.062
+Correlation r latitude: fbp_TFC              = 0.058
+Correlation r latitude: fbp_HFI_class        = 0.003
+Correlation r latitude: test_i               = 0.003
+Correlation r latitude: ia_success           = -0.132
+Correlation r latitude: max_size             = 0.024
+Correlation r latitude: first_size           = 0.046
+Correlation r latitude: first_status_held    = -0.183
+Correlation r latitude: sec_to_uc            = 0.103
+Correlation r latitude: aircraft_n_total     = 0.059
+Correlation r latitude: aircraft_hr_total    = 0.080
+Correlation r latitude: n_firefighters       = -0.024
+Correlation r latitude: n_non_firefighters   = 0.042
+Correlation r latitude: hr_firefighters      = -0.010
+Correlation r latitude: drop_amount_retardant = 0.045
+Correlation r latitude: drop_amount_water    = 0.019
+Correlation r latitude: drop_amount_total    = 0.038
+Correlation r latitude: n_fire_past_1        = 0.031
+Correlation r latitude: n_fire_past_7        = -0.025
+Correlation r latitude: n_fire_past_30       = 0.005
+Correlation r latitude: response_time        = -0.005
+Correlation r latitude: general_cause        = 0.227
+Correlation r latitude: assessment_size      = 0.046
+Correlation r latitude: fire_spread_rate     = 0.095
+Correlation r latitude: temperature          = 0.160
+Correlation r latitude: relative_humidity    = 0.033
+Correlation r latitude: wind_speed           = 0.011
+Correlation r latitude: equipment_Transportation = -0.041
+Correlation r latitude: equipment_Water_Delivery = -0.060
+Correlation r latitude: equipment_Fire_Guard_Building = -0.045
+Correlation r latitude: equipment_Base_Camp  = -0.044
+Correlation r latitude: wstation_dry_bulb_temperature = 0.159
+Correlation r latitude: wstation_relative_humidity = 0.153
+Correlation r latitude: wstation_wind_speed_kmh = 0.025
+Correlation r latitude: wstation_precipitation = 0.017
+Correlation r latitude: wstation_fine_fuel_moisture_code = -0.021
+Correlation r latitude: wstation_duff_moisture_code = -0.000
+Correlation r latitude: wstation_drought_code = 0.282
+Correlation r latitude: wstation_build_up_index = 0.073
+Correlation r latitude: wstation_initial_spread_index = -0.069
+Correlation r latitude: wstation_fire_weather_index = -0.022
+Correlation r latitude: wstation_daily_severity_rating = -0.029
+Correlation r latitude: fuelgrid_C           = 0.036
+Correlation r latitude: fuelgrid_D           = 0.038
+Correlation r latitude: fuelgrid_M           = -0.034
+Correlation r latitude: fuelgrid_Nonfuel     = 0.063
+Correlation r latitude: fuelgrid_O           = -0.145
+Correlation r latitude: fuelgrid_S           = -0.047
+Correlation r latitude: fuelgrid_Unclassified = nan
+Correlation r latitude: fuelgrid_Water       = 0.027
+Correlation r latitude: fbp_CFB              = 0.032
+Correlation r latitude: fbp_CFC              = 0.029
+Correlation r latitude: fbp_HFI              = -0.007
+Correlation r latitude: fbp_RAZ              = 0.007
+Correlation r latitude: fbp_ROS              = -0.073
+Correlation r latitude: fbp_SFC              = 0.062
+Correlation r latitude: fbp_TFC              = 0.058
+Correlation r latitude: fbp_HFI_class        = 0.003
+Correlation r latitude: test_i               = 0.003
+F = 96.32409364640645  P = 1.6813151321945105e-80

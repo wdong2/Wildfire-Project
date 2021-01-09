@@ -1,0 +1,638 @@
+1.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9680
+Model Family:                Binomial   Df Model:                            8
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1902.1
+Date:                Sun, 07 Jun 2020   Deviance:                       3804.1
+Time:                        03:03:07   Pearson chi2:                 9.73e+03
+No. Iterations:                     7                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept        22.7418      1.492     15.246      0.000      19.818      25.665
+fbp_CFB           0.2021      0.797      0.254      0.800      -1.360       1.765 *
+fbp_CFC          -0.5106      0.630     -0.811      0.417      -1.745       0.724 *
+fbp_HFI        7.396e-06   1.56e-05      0.473      0.636   -2.33e-05    3.81e-05 *
+fbp_RAZ          -0.0003      0.000     -0.658      0.511      -0.001       0.001 *
+fbp_ROS          -0.0390      0.013     -2.978      0.003      -0.065      -0.013
+fbp_SFC           0.2169      0.318      0.682      0.495      -0.406       0.840 *
+fbp_TFC          -0.2938      0.318     -0.924      0.355      -0.917       0.329 *
+fbp_HFI_class    -0.1089      0.102     -1.068      0.286      -0.309       0.091 *
+latitude         -0.3357      0.026    -13.051      0.000      -0.386      -0.285
+=================================================================================
+
+
+
+2.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9680
+Model Family:                Binomial   Df Model:                            8
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1503.2
+Date:                Sun, 07 Jun 2020   Deviance:                       3006.4
+Time:                        03:25:39   Pearson chi2:                 9.43e+06
+No. Iterations:                    10                                         
+Covariance Type:            nonrobust                                         
+================================================================================================================================
+                                                                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                        8.4041      1.579      5.324      0.000       5.310      11.498
+assessment_result[T.Delayed Action - Lower Priority]             1.5648      0.322      4.866      0.000       0.934       2.195
+assessment_result[T.Delayed Action - No Resources Available]     0.6169      0.314      1.962      0.050       0.001       1.233 *
+assessment_result[T.Immediate Action]                            2.6664      0.275      9.707      0.000       2.128       3.205
+assessment_result[T.Modified Action]                             1.0523      0.360      2.926      0.003       0.347       1.757
+first_status_held[T.True]                                        4.4932      0.512      8.770      0.000       3.489       5.497
+max_size                                                        -0.0004   5.12e-05     -8.752      0.000      -0.001      -0.000
+first_size                                                      -0.0007      0.001     -1.396      0.163      -0.002       0.000 *
+latitude                                                        -0.1470      0.027     -5.355      0.000      -0.201      -0.093
+================================================================================================================================
+
+
+3. (!)
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9686
+Model Family:                Binomial   Df Model:                            2
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -244.55
+Date:                Sun, 07 Jun 2020   Deviance:                       489.10
+Time:                        03:30:14   Pearson chi2:                     602.
+No. Iterations:                    12                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     14.8862      3.569      4.171      0.000       7.892      21.881
+sec_to_uc     -0.0001   8.29e-06    -16.101      0.000      -0.000      -0.000
+latitude      -0.1026      0.062     -1.664      0.096      -0.223       0.018 *
+==============================================================================
+
+
+4.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9683
+Model Family:                Binomial   Df Model:                            5
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1728.8
+Date:                Sun, 07 Jun 2020   Deviance:                       3457.5
+Time:                        03:32:12   Pearson chi2:                 8.94e+03
+No. Iterations:                   100                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+Intercept             22.9272      1.612     14.223      0.000      19.768      26.086
+aircraft_n_Fixed      -0.0142      0.034     -0.416      0.678      -0.081       0.053 *
+aircraft_n_Rotary      0.0133      0.051      0.262      0.794      -0.086       0.112 *
+aircraft_n_total      -0.0009      0.025     -0.038      0.970      -0.049       0.048 *
+aircraft_hr_Fixed     -0.0342      0.010     -3.349      0.001      -0.054      -0.014 
+aircraft_hr_Rotary    -0.0086      0.013     -0.641      0.521      -0.035       0.018 *
+aircraft_hr_total     -0.0428      0.007     -6.442      0.000      -0.056      -0.030
+latitude              -0.3449      0.028    -12.299      0.000      -0.400      -0.290
+======================================================================================
+
+
+5.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9681
+Model Family:                Binomial   Df Model:                            7
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1656.9
+Date:                Sun, 07 Jun 2020   Deviance:                       3313.8
+Time:                        03:36:29   Pearson chi2:                 3.68e+04
+No. Iterations:                   100                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================
+                            coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                22.2445      1.620     13.729      0.000      19.069      25.420
+n_firefighters            0.0744      0.016      4.629      0.000       0.043       0.106
+n_non_firefighters        0.2706      0.056      4.848      0.000       0.161       0.380
+hr_firefighters          -0.0039      0.002     -1.758      0.079      -0.008       0.000 *
+hr_non_firefighters      -0.0753      0.010     -7.762      0.000      -0.094      -0.056
+drop_amount_retardant  4.592e+07   3.28e+08      0.140      0.889   -5.98e+08     6.9e+08 *
+drop_amount_water      4.592e+07   3.28e+08      0.140      0.889   -5.98e+08     6.9e+08 *
+drop_amount_total     -4.592e+07   3.28e+08     -0.140      0.889    -6.9e+08    5.98e+08 *
+latitude                 -0.3400      0.028    -12.060      0.000      -0.395      -0.285
+=========================================================================================
+
+
+6.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9680
+Model Family:                Binomial   Df Model:                            8
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1887.0
+Date:                Sun, 07 Jun 2020   Deviance:                       3774.1
+Time:                        03:38:05   Pearson chi2:                 1.01e+04
+No. Iterations:                     7                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================
+                             coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------
+Intercept                 84.4625     25.320      3.336      0.001      34.837     134.088
+general_cause[T.other]     0.7496      0.143      5.228      0.000       0.469       1.031
+n_fire_past_1             -0.0090      0.002     -3.967      0.000      -0.013      -0.005
+n_fire_past_7             -0.0059      0.001     -6.815      0.000      -0.008      -0.004
+n_fire_past_30             0.0008      0.001      1.517      0.129      -0.000       0.002 *
+response_time           2.209e-06   1.87e-06      1.181      0.238   -1.46e-06    5.88e-06 *
+year                      -0.0318      0.013     -2.521      0.012      -0.056      -0.007
+month                      0.1519      0.053      2.893      0.004       0.049       0.255
+latitude                  -0.3209      0.027    -11.746      0.000      -0.374      -0.267
+==========================================================================================
+
+
+7.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9678
+Model Family:                Binomial   Df Model:                           10
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1733.9
+Date:                Sun, 07 Jun 2020   Deviance:                       3467.7
+Time:                        03:39:56   Pearson chi2:                 4.69e+06
+No. Iterations:                     7                                         
+Covariance Type:            nonrobust                                         
+========================================================================================================
+                                           coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                               21.2393      2.401      8.845      0.000      16.533      25.946
+fire_position_on_slope[T.Flat]          -0.2341      0.275     -0.852      0.394      -0.773       0.305 *
+fire_position_on_slope[T.Lower 1/3]     -0.4796      0.387     -1.241      0.215      -1.237       0.278 *
+fire_position_on_slope[T.Middle 1/3]    -0.3703      0.383     -0.966      0.334      -1.121       0.381 *
+fire_position_on_slope[T.Upper 1/3]     -0.4697      0.360     -1.304      0.192      -1.176       0.236 *
+longitude                               -0.0011      0.018     -0.058      0.954      -0.037       0.035 *
+assessment_size                         -0.0004      0.000     -1.270      0.204      -0.001       0.000 *
+fire_spread_rate                        -0.1782      0.012    -14.645      0.000      -0.202      -0.154
+temperature                             -0.0619      0.010     -6.202      0.000      -0.082      -0.042
+relative_humidity                        0.0264      0.004      7.420      0.000       0.019       0.033
+latitude                                -0.3119      0.028    -11.252      0.000      -0.366      -0.258
+========================================================================================================
+
+
+8.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9670
+Model Family:                Binomial   Df Model:                           18
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1732.9
+Date:                Sun, 07 Jun 2020   Deviance:                       3465.8
+Time:                        03:44:25   Pearson chi2:                 9.65e+03
+No. Iterations:                     7                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================================
+                                                  coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------
+Intercept                                      27.2226      1.671     16.293      0.000      23.948      30.497
+wind_direction[T.E]                            -0.8213      0.303     -2.712      0.007      -1.415      -0.228
+wind_direction[T.N]                            -0.8802      0.301     -2.921      0.003      -1.471      -0.290
+wind_direction[T.NE]                           -0.7492      0.315     -2.379      0.017      -1.366      -0.132
+wind_direction[T.NW]                           -0.9494      0.286     -3.322      0.001      -1.509      -0.389
+wind_direction[T.S]                            -1.1469      0.291     -3.935      0.000      -1.718      -0.576
+wind_direction[T.SE]                           -0.8353      0.286     -2.916      0.004      -1.397      -0.274
+wind_direction[T.SW]                           -1.2540      0.276     -4.548      0.000      -1.794      -0.714
+wind_direction[T.W]                            -0.7318      0.279     -2.621      0.009      -1.279      -0.184
+weather_conditions_over_fire[T.CB Wet]          0.1173      0.202      0.582      0.561      -0.278       0.512 *
+weather_conditions_over_fire[T.Clear]          -0.0213      0.158     -0.135      0.893      -0.331       0.288 *
+weather_conditions_over_fire[T.Cloudy]          0.0960      0.166      0.578      0.563      -0.230       0.422 *
+weather_conditions_over_fire[T.Rainshowers]     0.5099      0.336      1.516      0.130      -0.149       1.169 *
+wind_speed                                     -0.0457      0.005     -9.516      0.000      -0.055      -0.036
+equipment_Transportation                       -0.1262      0.040     -3.165      0.002      -0.204      -0.048
+equipment_Water_Delivery                        0.0737      0.089      0.827      0.408      -0.101       0.248 *
+equipment_Sustained_Action                  -6.192e-16   6.15e-16     -1.007      0.314   -1.82e-15    5.86e-16 *
+equipment_Fire_Guard_Building                  -0.3699      0.062     -5.988      0.000      -0.491      -0.249
+equipment_Base_Camp                             0.0259      0.149      0.174      0.862      -0.266       0.318 *
+latitude                                       -0.4033      0.029    -14.096      0.000      -0.459      -0.347
+===============================================================================================================
+
+
+
+9.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9675
+Model Family:                Binomial   Df Model:                           13
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1832.0
+Date:                Sun, 07 Jun 2020   Deviance:                       3664.0
+Time:                        03:47:56   Pearson chi2:                 9.01e+03
+No. Iterations:                     7                                         
+Covariance Type:            nonrobust                                         
+====================================================================================================
+                                       coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------
+Intercept                           20.8553      1.810     11.519      0.000      17.307      24.404
+wstation_dry_bulb_temperature       -0.1234      0.013     -9.688      0.000      -0.148      -0.098
+wstation_relative_humidity           0.0266      0.005      5.047      0.000       0.016       0.037
+wstation_wind_speed_kmh             -0.0393      0.010     -3.812      0.000      -0.060      -0.019
+wstation_wind_direction              0.0010      0.000      2.530      0.011       0.000       0.002
+wstation_precipitation              -0.0007      0.023     -0.029      0.977      -0.046       0.045 *
+wstation_fine_fuel_moisture_code     0.0227      0.013      1.755      0.079      -0.003       0.048 *
+wstation_duff_moisture_code         -0.0281      0.018     -1.602      0.109      -0.063       0.006 *
+wstation_drought_code               -0.0009      0.001     -1.043      0.297      -0.002       0.001 *
+wstation_build_up_index              0.0139      0.016      0.887      0.375      -0.017       0.044 *
+wstation_initial_spread_index       -0.0441      0.015     -2.870      0.004      -0.074      -0.014
+wstation_fire_weather_index         -0.0333      0.024     -1.373      0.170      -0.081       0.014 *
+wstation_daily_severity_rating       0.1039      0.037      2.836      0.005       0.032       0.176
+latitude                            -0.3058      0.027    -11.434      0.000      -0.358      -0.253
+====================================================================================================
+
+
+
+10.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9680
+Model Family:                Binomial   Df Model:                            8
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1894.3
+Date:                Sun, 07 Jun 2020   Deviance:                       3788.7
+Time:                        03:51:15   Pearson chi2:                 1.02e+04
+No. Iterations:                     7                                         
+Covariance Type:            nonrobust                                         
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept           20.7170      2.801      7.396      0.000      15.227      26.207
+fuelgrid_C          -0.0188      0.031     -0.606      0.544      -0.080       0.042 *
+fuelgrid_D           0.0201      0.031      0.643      0.520      -0.041       0.081 *
+fuelgrid_M          -0.0027      0.031     -0.087      0.931      -0.064       0.058 *
+fuelgrid_Nonfuel     0.0008      0.031      0.026      0.980      -0.060       0.062 *
+fuelgrid_O          -0.0096      0.031     -0.309      0.757      -0.071       0.051 *
+fuelgrid_S           0.0112      0.048      0.232      0.816      -0.083       0.106 *
+fuelgrid_Water      -0.0019      0.032     -0.061      0.951      -0.064       0.060 *
+latitude            -0.3032      0.025    -12.282      0.000      -0.352      -0.255
+====================================================================================
+
+
+
+11.
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9646
+Model Family:                Binomial   Df Model:                           42
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1873.1
+Date:                Sun, 07 Jun 2020   Deviance:                       3746.2
+Time:                        03:52:47   Pearson chi2:                 1.08e+04
+No. Iterations:                    22                                         
+Covariance Type:            nonrobust                                         
+====================================================================================================
+                                       coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------
+Intercept                           16.5997      1.519     10.927      0.000      13.622      19.577
+fuel_type2[T.C-2]                    0.1698      0.185      0.916      0.360      -0.194       0.533 *
+fuel_type2[T.C-3]                    0.2216      0.275      0.805      0.421      -0.318       0.761 *
+fuel_type2[T.C-4]                   -0.3779      0.473     -0.799      0.424      -1.305       0.549 *
+fuel_type2[T.C-5]                   -0.2885      0.777     -0.372      0.710      -1.811       1.233 *
+fuel_type2[T.C-7]                    0.1521      0.798      0.191      0.849      -1.411       1.715 *
+fuel_type2[T.D-1/D-2]                0.2735      0.123      2.231      0.026       0.033       0.514
+fuel_type2[T.M-1/M-2]               -0.5678   2709.340     -0.000      1.000   -5310.777    5309.641 *
+fuel_type2[T.M-1/M-2 (20 PC)]       -0.9396   2709.340     -0.000      1.000   -5311.148    5309.269 *
+fuel_type2[T.M-1/M-2 (25 PC)]       -3.1257   2709.340     -0.001      0.999   -5313.334    5307.083 *
+fuel_type2[T.M-1/M-2 (30 PC)]       -0.8942   2709.340     -0.000      1.000   -5311.103    5309.315 *
+fuel_type2[T.M-1/M-2 (35 PC)]       -2.5745   2709.340     -0.001      0.999   -5312.783    5307.634 *
+fuel_type2[T.M-1/M-2 (40 PC)]       -0.6889   2709.340     -0.000      1.000   -5310.898    5309.520 *
+fuel_type2[T.M-1/M-2 (45 PC)]       -1.4251   2709.340     -0.001      1.000   -5311.634    5308.784 *
+fuel_type2[T.M-1/M-2 (50 PC)]       -1.4030   2709.340     -0.001      1.000   -5311.612    5308.806 *
+fuel_type2[T.M-1/M-2 (55 PC)]       -0.9266   2709.340     -0.000      1.000   -5311.135    5309.282 *
+fuel_type2[T.M-1/M-2 (60 PC)]       -0.1389   2709.340  -5.13e-05      1.000   -5310.348    5310.070 *
+fuel_type2[T.M-1/M-2 (65 PC)]       -0.8165   2709.340     -0.000      1.000   -5311.025    5309.392 *
+fuel_type2[T.M-1/M-2 (70 PC)]       -0.6630   2709.340     -0.000      1.000   -5310.872    5309.546 *
+fuel_type2[T.M-1/M-2 (75 PC)]       -2.4352   2709.340     -0.001      0.999   -5312.644    5307.774 *
+fuel_type2[T.M-1/M-2 (80 PC)]       -1.4326   2709.340     -0.001      1.000   -5311.641    5308.776 *
+fuel_type2[T.M-1/M-2 (85 PC)]       19.6661   4.06e+04      0.000      1.000   -7.96e+04    7.97e+04 *
+fuel_type2[T.Non-Fuel]               0.3707      0.185      2.009      0.045       0.009       0.732 
+fuel_type2[T.O-1]                   -0.0005      0.109     -0.004      0.997      -0.213       0.212 *
+fuel_type2[T.S-1]                    6.8716   1.99e+04      0.000      1.000   -3.89e+04     3.9e+04 *
+fuel_type2[T.S-2]                    6.4845   1.95e+04      0.000      1.000   -3.83e+04    3.83e+04 *
+fuel_type2[T.Vegetated Non-Fuel]    -0.0612      0.218     -0.281      0.779      -0.488       0.366 *
+fuel_type2[T.Water]                  0.2273      0.232      0.980      0.327      -0.227       0.682 *
+grouped_fuel_type2[T.D]              0.2735      0.123      2.231      0.026       0.033       0.514 
+grouped_fuel_type2[T.M]              1.6345   2709.340      0.001      1.000   -5308.574    5311.843 *
+grouped_fuel_type2[T.Nonfuel]        0.3095      0.170      1.820      0.069      -0.024       0.643 *
+grouped_fuel_type2[T.O]             -0.0005      0.109     -0.004      0.997      -0.213       0.212 *
+grouped_fuel_type2[T.S]             13.3562   1.25e+04      0.001      0.999   -2.44e+04    2.44e+04 *
+grouped_fuel_type2[T.Water]          0.2273      0.232      0.980      0.327      -0.227       0.682 *
+fuel_type[T.C2]                      0.1569      0.166      0.944      0.345      -0.169       0.483 *
+fuel_type[T.C3]                     -0.3042      0.257     -1.183      0.237      -0.808       0.200 *
+fuel_type[T.C4]                      0.3143      0.472      0.665      0.506      -0.612       1.240 *
+fuel_type[T.C7]                     19.4969   3.54e+04      0.001      1.000   -6.94e+04    6.94e+04 *
+fuel_type[T.D1]                      0.5489      0.244      2.246      0.025       0.070       1.028
+fuel_type[T.M1]                     -7.4741   1.82e+04     -0.000      1.000   -3.58e+04    3.57e+04 *
+fuel_type[T.M2]                     -7.6538   1.82e+04     -0.000      1.000   -3.58e+04    3.57e+04 *
+fuel_type[T.M3]                     12.2107    6.4e+04      0.000      1.000   -1.25e+05    1.26e+05 *
+fuel_type[T.M4]                     11.9645   3.94e+04      0.000      1.000   -7.73e+04    7.73e+04 *
+fuel_type[T.O1a]                     1.0102      0.257      3.938      0.000       0.507       1.513
+fuel_type[T.O1b]                     0.3266      0.258      1.267      0.205      -0.179       0.832 *
+fuel_type[T.S1]                      0.3309      0.442      0.749      0.454      -0.535       1.196 *
+fuel_type[T.S2]                      0.3640      0.442      0.824      0.410      -0.502       1.230 *
+grouped_fuel_type[T.D]               0.5489      0.244      2.246      0.025       0.070       1.028
+grouped_fuel_type[T.M]               9.0473   1.82e+04      0.000      1.000   -3.57e+04    3.58e+04 *
+grouped_fuel_type[T.O]               1.3368      0.197      6.787      0.000       0.951       1.723
+grouped_fuel_type[T.S]               0.6950      0.299      2.323      0.020       0.109       1.281
+test_i                               0.1402      0.101      1.385      0.166      -0.058       0.339 *
+latitude                            -0.2566      0.026     -9.948      0.000      -0.307      -0.206
+====================================================================================================
+
+
+
+12. (1,2,4)
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9678
+Model Family:                Binomial   Df Model:                           10
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1302.1
+Date:                Sun, 07 Jun 2020   Deviance:                       2604.2
+Time:                        04:05:31   Pearson chi2:                 6.95e+04
+No. Iterations:                    10                                         
+Covariance Type:            nonrobust                                         
+================================================================================================================================
+                                                                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                       11.5715      1.767      6.550      0.000       8.109      15.034
+assessment_result[T.Delayed Action - Lower Priority]             0.9831      0.342      2.871      0.004       0.312       1.654 
+assessment_result[T.Delayed Action - No Resources Available]    -0.0167      0.334     -0.050      0.960      -0.672       0.638 *
+assessment_result[T.Immediate Action]                            2.5205      0.295      8.558      0.000       1.943       3.098
+assessment_result[T.Modified Action]                             0.3686      0.376      0.980      0.327      -0.369       1.106 *
+first_status_held[T.True]                                        3.8060      0.474      8.027      0.000       2.877       4.735
+fbp_ROS                                                         -0.0413      0.006     -6.579      0.000      -0.054      -0.029
+max_size                                                        -0.0003   4.43e-05     -7.670      0.000      -0.000      -0.000
+aircraft_hr_Fixed                                               -0.0360      0.014     -2.491      0.013      -0.064      -0.008
+aircraft_hr_total                                               -0.0377      0.011     -3.576      0.000      -0.058      -0.017
+latitude                                                        -0.1843      0.031     -6.034      0.000      -0.244      -0.124
+================================================================================================================================
+
+
+
+13. (1,2,4,5,6,7)
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9667
+Model Family:                Binomial   Df Model:                           21
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1167.4
+Date:                Sun, 07 Jun 2020   Deviance:                       2334.9
+Time:                        04:11:27   Pearson chi2:                 8.48e+03
+No. Iterations:                    10                                         
+Covariance Type:            nonrobust                                         
+================================================================================================================================
+                                                                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                      164.3587     33.124      4.962      0.000      99.438     229.280
+assessment_result[T.Delayed Action - Lower Priority]             0.7129      0.367      1.942      0.052      -0.007       1.433 *
+assessment_result[T.Delayed Action - No Resources Available]    -0.1073      0.361     -0.297      0.766      -0.815       0.600 *
+assessment_result[T.Immediate Action]                            2.1950      0.320      6.869      0.000       1.569       2.821
+assessment_result[T.Modified Action]                            -0.1056      0.405     -0.261      0.794      -0.899       0.688 *
+first_status_held[T.True]                                        3.7608      0.517      7.272      0.000       2.747       4.774
+general_cause[T.other]                                           0.7456      0.201      3.717      0.000       0.352       1.139
+fbp_ROS                                                         -0.0311      0.007     -4.390      0.000      -0.045      -0.017
+max_size                                                        -0.0002   3.97e-05     -5.513      0.000      -0.000      -0.000
+aircraft_hr_Fixed                                               -0.0465      0.016     -2.832      0.005      -0.079      -0.014
+aircraft_hr_total                                               -0.0201      0.014     -1.416      0.157      -0.048       0.008 *
+n_firefighters                                                   0.0479      0.010      4.629      0.000       0.028       0.068
+n_non_firefighters                                               0.0708      0.056      1.267      0.205      -0.039       0.180 *
+hr_non_firefighters                                             -0.0478      0.010     -4.655      0.000      -0.068      -0.028
+n_fire_past_1                                                   -0.0104      0.003     -3.439      0.001      -0.016      -0.004
+n_fire_past_7                                                   -0.0037      0.001     -3.938      0.000      -0.006      -0.002
+year                                                            -0.0760      0.017     -4.586      0.000      -0.108      -0.043
+month                                                           -0.0298      0.065     -0.462      0.644      -0.156       0.097 *
+fire_spread_rate                                                -0.0877      0.011     -7.752      0.000      -0.110      -0.066
+temperature                                                      0.0159      0.014      1.143      0.253      -0.011       0.043 *
+relative_humidity                                                0.0283      0.005      6.047      0.000       0.019       0.037
+latitude                                                        -0.1944      0.036     -5.396      0.000      -0.265      -0.124
+================================================================================================================================
+
+
+
+14. (13,8,9)
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9654
+Model Family:                Binomial   Df Model:                           34
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1129.9
+Date:                Sun, 07 Jun 2020   Deviance:                       2259.8
+Time:                        04:19:48   Pearson chi2:                 8.22e+03
+No. Iterations:                    10                                         
+Covariance Type:            nonrobust                                         
+================================================================================================================================
+                                                                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                      137.4185     32.607      4.214      0.000      73.510     201.327
+assessment_result[T.Delayed Action - Lower Priority]             0.5947      0.378      1.572      0.116      -0.147       1.336 *
+assessment_result[T.Delayed Action - No Resources Available]    -0.2139      0.372     -0.576      0.565      -0.942       0.514 *
+assessment_result[T.Immediate Action]                            1.9694      0.330      5.972      0.000       1.323       2.616
+assessment_result[T.Modified Action]                            -0.2908      0.415     -0.700      0.484      -1.105       0.523 *
+first_status_held[T.True]                                        3.6618      0.509      7.188      0.000       2.663       4.660
+general_cause[T.other]                                           0.7255      0.222      3.262      0.001       0.290       1.161
+wind_direction[T.E]                                             -0.3907      0.339     -1.151      0.250      -1.056       0.275 *
+wind_direction[T.N]                                             -0.6367      0.331     -1.923      0.054      -1.286       0.012 *
+wind_direction[T.NE]                                            -0.4665      0.350     -1.335      0.182      -1.152       0.219 *
+wind_direction[T.NW]                                            -0.5000      0.319     -1.566      0.117      -1.126       0.126 *
+wind_direction[T.S]                                             -0.6470      0.327     -1.978      0.048      -1.288      -0.006
+wind_direction[T.SE]                                            -0.4720      0.320     -1.474      0.141      -1.100       0.156 *
+wind_direction[T.SW]                                            -0.8086      0.310     -2.611      0.009      -1.416      -0.202
+wind_direction[T.W]                                             -0.3606      0.312     -1.156      0.248      -0.972       0.251 *
+fbp_ROS                                                         -0.0159      0.011     -1.438      0.150      -0.038       0.006 *
+max_size                                                        -0.0002   3.86e-05     -5.090      0.000      -0.000      -0.000
+aircraft_hr_Fixed                                               -0.0601      0.007     -8.895      0.000      -0.073      -0.047
+n_firefighters                                                   0.0552      0.010      5.566      0.000       0.036       0.075
+hr_non_firefighters                                             -0.0334      0.005     -6.582      0.000      -0.043      -0.023
+n_fire_past_1                                                   -0.0079      0.003     -2.554      0.011      -0.014      -0.002
+n_fire_past_7                                                   -0.0034      0.001     -3.604      0.000      -0.005      -0.002
+year                                                            -0.0613      0.016     -3.753      0.000      -0.093      -0.029
+fire_spread_rate                                                -0.0811      0.011     -7.161      0.000      -0.103      -0.059
+relative_humidity                                                0.0203      0.004      4.528      0.000       0.012       0.029
+wind_speed                                                      -0.0279      0.007     -3.917      0.000      -0.042      -0.014
+equipment_Transportation                                         0.0035      0.046      0.077      0.939      -0.086       0.093 *
+equipment_Fire_Guard_Building                                   -0.2273      0.070     -3.241      0.001      -0.365      -0.090
+wstation_dry_bulb_temperature                                   -0.0425      0.018     -2.335      0.020      -0.078      -0.007
+wstation_relative_humidity                                       0.0133      0.006      2.258      0.024       0.002       0.025
+wstation_wind_speed_kmh                                          0.0012      0.012      0.098      0.922      -0.022       0.025 *
+wstation_wind_direction                                          0.0009      0.000      1.739      0.082      -0.000       0.002 *
+wstation_initial_spread_index                                   -0.0021      0.018     -0.117      0.907      -0.037       0.033 *
+wstation_daily_severity_rating                                   0.0065      0.020      0.317      0.751      -0.033       0.046 *
+latitude                                                        -0.2148      0.038     -5.705      0.000      -0.289      -0.141
+================================================================================================================================
+
+
+
+15. (14, 10, 11)
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9619
+Model Family:                Binomial   Df Model:                           69
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1107.4
+Date:                Sun, 07 Jun 2020   Deviance:                       2214.8
+Time:                        04:25:06   Pearson chi2:                 9.67e+03
+No. Iterations:                    22                                         
+Covariance Type:            nonrobust                                         
+================================================================================================================================
+                                                                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                      149.3024     34.650      4.309      0.000      81.390     217.214
+assessment_result[T.Delayed Action - Lower Priority]             0.5633      0.386      1.458      0.145      -0.194       1.320 *
+assessment_result[T.Delayed Action - No Resources Available]    -0.1456      0.381     -0.382      0.702      -0.892       0.601 *
+assessment_result[T.Immediate Action]                            1.9741      0.339      5.829      0.000       1.310       2.638
+assessment_result[T.Modified Action]                            -0.3357      0.429     -0.783      0.434      -1.176       0.505 *
+first_status_held[T.True]                                        3.6374      0.509      7.141      0.000       2.639       4.636
+general_cause[T.other]                                           0.4817      0.265      1.820      0.069      -0.037       1.001 *
+wind_direction[T.E]                                             -0.3660      0.342     -1.071      0.284      -1.036       0.304 *
+wind_direction[T.N]                                             -0.5913      0.334     -1.773      0.076      -1.245       0.062 *
+wind_direction[T.NE]                                            -0.5105      0.351     -1.454      0.146      -1.199       0.178 *
+wind_direction[T.NW]                                            -0.5419      0.322     -1.685      0.092      -1.172       0.088 *
+wind_direction[T.S]                                             -0.6699      0.329     -2.038      0.042      -1.314      -0.026
+wind_direction[T.SE]                                            -0.3857      0.323     -1.193      0.233      -1.019       0.248 *
+wind_direction[T.SW]                                            -0.8305      0.312     -2.665      0.008      -1.441      -0.220
+wind_direction[T.W]                                             -0.4175      0.314     -1.331      0.183      -1.032       0.197 *
+fuel_type2[T.C-2]                                                0.3859      0.238      1.620      0.105      -0.081       0.853 *
+fuel_type2[T.C-3]                                                0.3112      0.352      0.885      0.376      -0.378       1.000 *
+fuel_type2[T.C-4]                                               -0.3159      0.592     -0.533      0.594      -1.476       0.845 *
+fuel_type2[T.C-5]                                                0.0795      0.938      0.085      0.932      -1.759       1.918 *
+fuel_type2[T.C-7]                                                1.2971      1.165      1.113      0.266      -0.987       3.581 *
+fuel_type2[T.D-1/D-2]                                            0.2296      0.154      1.493      0.135      -0.072       0.531 *
+fuel_type2[T.M-1/M-2]                                           -0.7509   2299.834     -0.000      1.000   -4508.342    4506.841 *
+fuel_type2[T.M-1/M-2 (20 PC)]                                   -1.2006   2299.834     -0.001      1.000   -4508.792    4506.391 *
+fuel_type2[T.M-1/M-2 (25 PC)]                                   -2.0475   2299.834     -0.001      0.999   -4509.640    4505.545 *
+fuel_type2[T.M-1/M-2 (30 PC)]                                   -0.3433   2299.834     -0.000      1.000   -4507.935    4507.248 *
+fuel_type2[T.M-1/M-2 (35 PC)]                                   -2.9787   2299.834     -0.001      0.999   -4510.570    4504.613 *
+fuel_type2[T.M-1/M-2 (40 PC)]                                   -0.5962   2299.834     -0.000      1.000   -4508.188    4506.996 *
+fuel_type2[T.M-1/M-2 (45 PC)]                                   -2.3209   2299.834     -0.001      0.999   -4509.913    4505.271 *
+fuel_type2[T.M-1/M-2 (50 PC)]                                   -1.7914   2299.834     -0.001      0.999   -4509.383    4505.800 *
+fuel_type2[T.M-1/M-2 (55 PC)]                                   -1.1045   2299.834     -0.000      1.000   -4508.696    4506.487 *
+fuel_type2[T.M-1/M-2 (60 PC)]                                    1.0565   2299.834      0.000      1.000   -4506.536    4508.649 *
+fuel_type2[T.M-1/M-2 (65 PC)]                                    1.0951   2299.835      0.000      1.000   -4506.499    4508.689 *
+fuel_type2[T.M-1/M-2 (70 PC)]                                   -1.5007   2299.834     -0.001      0.999   -4509.092    4506.091 *
+fuel_type2[T.M-1/M-2 (75 PC)]                                   -3.2795   2299.834     -0.001      0.999   -4510.872    4504.313 *
+fuel_type2[T.M-1/M-2 (80 PC)]                                   -1.8343   2299.834     -0.001      0.999   -4509.426    4505.757 *
+fuel_type2[T.M-1/M-2 (85 PC)]                                   19.9381   3.45e+04      0.001      1.000   -6.76e+04    6.76e+04 *
+fuel_type2[T.Non-Fuel]                                           0.1115      0.235      0.475      0.635      -0.349       0.572 *
+fuel_type2[T.O-1]                                                0.0735      0.143      0.515      0.606      -0.206       0.353 *
+fuel_type2[T.S-1]                                                6.7566   1.76e+04      0.000      1.000   -3.45e+04    3.46e+04 *
+fuel_type2[T.S-2]                                                5.7872   1.68e+04      0.000      1.000   -3.29e+04     3.3e+04 *
+fuel_type2[T.Vegetated Non-Fuel]                                 0.2525      0.283      0.893      0.372      -0.302       0.807 *
+fuel_type2[T.Water]                                              0.1334      0.292      0.457      0.648      -0.439       0.706 *
+grouped_fuel_type2[T.D]                                          0.2296      0.154      1.493      0.135      -0.072       0.531 *
+grouped_fuel_type2[T.M]                                          2.3410   2299.834      0.001      0.999   -4505.250    4509.932 *
+grouped_fuel_type2[T.Nonfuel]                                    0.3640      0.216      1.687      0.092      -0.059       0.787 *
+grouped_fuel_type2[T.O]                                          0.0735      0.143      0.515      0.606      -0.206       0.353 *
+grouped_fuel_type2[T.S]                                         12.5438   1.09e+04      0.001      0.999   -2.13e+04    2.14e+04 *
+grouped_fuel_type2[T.Water]                                      0.1334      0.292      0.457      0.648      -0.439       0.706 *
+fuel_type[T.C2]                                                  0.1515      0.214      0.709      0.479      -0.268       0.571 *
+fuel_type[T.C3]                                                 -0.4975      0.330     -1.509      0.131      -1.144       0.149 *
+fuel_type[T.C4]                                                  0.2739      0.608      0.451      0.652      -0.917       1.465 *
+fuel_type[T.C7]                                                 15.9356   3.24e+04      0.000      1.000   -6.34e+04    6.34e+04 *
+fuel_type[T.D1]                                                  0.1042      0.300      0.347      0.729      -0.484       0.693 *
+fuel_type[T.M1]                                                 -5.9554   1.81e+04     -0.000      1.000   -3.55e+04    3.54e+04 *
+fuel_type[T.M2]                                                 -6.5214   1.81e+04     -0.000      1.000   -3.55e+04    3.54e+04 *
+fuel_type[T.M3]                                                  8.7897   6.42e+04      0.000      1.000   -1.26e+05    1.26e+05 *
+fuel_type[T.M4]                                                 10.8380    3.8e+04      0.000      1.000   -7.45e+04    7.45e+04 *
+fuel_type[T.O1a]                                                 0.6561      0.314      2.089      0.037       0.041       1.272
+fuel_type[T.O1b]                                                -0.2083      0.306     -0.681      0.496      -0.808       0.392 *
+fuel_type[T.S1]                                                 -0.1216      0.602     -0.202      0.840      -1.301       1.058 *
+fuel_type[T.S2]                                                  0.7553      0.698      1.082      0.279      -0.613       2.124 *
+grouped_fuel_type[T.D]                                           0.1042      0.300      0.347      0.729      -0.484       0.693 *
+grouped_fuel_type[T.M]                                           7.1510   1.81e+04      0.000      1.000   -3.54e+04    3.55e+04 *
+grouped_fuel_type[T.O]                                           0.4477      0.266      1.681      0.093      -0.074       0.970 *
+grouped_fuel_type[T.S]                                           0.6337      0.439      1.443      0.149      -0.227       1.495 *
+fbp_ROS                                                         -0.0104      0.009     -1.135      0.256      -0.028       0.008 *
+max_size                                                        -0.0002   3.85e-05     -4.975      0.000      -0.000      -0.000
+aircraft_hr_Fixed                                               -0.0580      0.007     -8.384      0.000      -0.072      -0.044
+n_firefighters                                                   0.0546      0.010      5.528      0.000       0.035       0.074
+hr_non_firefighters                                             -0.0332      0.005     -6.403      0.000      -0.043      -0.023
+n_fire_past_1                                                   -0.0079      0.003     -2.522      0.012      -0.014      -0.002
+n_fire_past_7                                                   -0.0035      0.001     -3.627      0.000      -0.005      -0.002
+year                                                            -0.0676      0.017     -3.898      0.000      -0.102      -0.034
+fire_spread_rate                                                -0.0802      0.011     -7.046      0.000      -0.102      -0.058
+relative_humidity                                                0.0213      0.005      4.687      0.000       0.012       0.030
+wind_speed                                                      -0.0288      0.007     -4.113      0.000      -0.043      -0.015
+equipment_Fire_Guard_Building                                   -0.2235      0.045     -5.003      0.000      -0.311      -0.136
+wstation_dry_bulb_temperature                                   -0.0323      0.018     -1.815      0.070      -0.067       0.003 *
+wstation_relative_humidity                                       0.0146      0.006      2.494      0.013       0.003       0.026
+latitude                                                        -0.2149      0.038     -5.632      0.000      -0.290      -0.140
+================================================================================================================================
+
+
+
+16. (15)
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             ia_success   No. Observations:                 9689
+Model:                            GLM   Df Residuals:                     9649
+Model Family:                Binomial   Df Model:                           39
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -1127.8
+Date:                Sun, 07 Jun 2020   Deviance:                       2255.7
+Time:                        04:32:26   Pearson chi2:                 7.59e+03
+No. Iterations:                    21                                         
+Covariance Type:            nonrobust                                         
+================================================================================================================================
+                                                                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                      154.0647     32.379      4.758      0.000      90.603     217.527
+assessment_result[T.Delayed Action - Lower Priority]             0.6577      0.379      1.733      0.083      -0.086       1.401 *
+assessment_result[T.Delayed Action - No Resources Available]    -0.1369      0.375     -0.365      0.715      -0.872       0.598 *
+assessment_result[T.Immediate Action]                            2.0281      0.333      6.093      0.000       1.376       2.681
+assessment_result[T.Modified Action]                            -0.1325      0.417     -0.318      0.750      -0.949       0.684 *
+first_status_held[T.True]                                        3.6469      0.504      7.239      0.000       2.660       4.634
+wind_direction[T.E]                                             -0.3995      0.340     -1.175      0.240      -1.066       0.267 *
+wind_direction[T.N]                                             -0.6208      0.332     -1.872      0.061      -1.271       0.029 *
+wind_direction[T.NE]                                            -0.5110      0.349     -1.462      0.144      -1.196       0.174 *
+wind_direction[T.NW]                                            -0.5729      0.319     -1.795      0.073      -1.198       0.053 *
+wind_direction[T.S]                                             -0.7253      0.327     -2.221      0.026      -1.365      -0.085
+wind_direction[T.SE]                                            -0.4522      0.321     -1.409      0.159      -1.081       0.177 *
+wind_direction[T.SW]                                            -0.8945      0.309     -2.890      0.004      -1.501      -0.288
+wind_direction[T.W]                                             -0.4536      0.311     -1.458      0.145      -1.063       0.156 *
+fuel_type[T.C2]                                                  0.1535      0.212      0.723      0.469      -0.262       0.569 *
+fuel_type[T.C3]                                                 -0.4615      0.318     -1.451      0.147      -1.085       0.162 *
+fuel_type[T.C4]                                                  0.2787      0.588      0.474      0.636      -0.874       1.431 *
+fuel_type[T.C7]                                                 15.5223   1.94e+04      0.001      0.999    -3.8e+04     3.8e+04 *
+fuel_type[T.D1]                                                  0.8319      0.562      1.480      0.139      -0.270       1.933 *
+fuel_type[T.M1]                                                  1.6300      0.640      2.548      0.011       0.376       2.884
+fuel_type[T.M2]                                                  0.7983      0.307      2.602      0.009       0.197       1.400
+fuel_type[T.M3]                                                 15.5620   4.82e+04      0.000      1.000   -9.44e+04    9.45e+04 *
+fuel_type[T.M4]                                                 17.3075   2.63e+04      0.001      0.999   -5.15e+04    5.16e+04 *
+fuel_type[T.O1a]                                                 1.6187      0.454      3.563      0.000       0.728       2.509
+fuel_type[T.O1b]                                                 0.7541      0.444      1.699      0.089      -0.116       1.624
+fuel_type[T.S1]                                                  0.7731      0.775      0.997      0.319      -0.746       2.292 *
+fuel_type[T.S2]                                                  1.5543      0.922      1.686      0.092      -0.252       3.361
+max_size                                                        -0.0002   3.81e-05     -5.068      0.000      -0.000      -0.000
+aircraft_hr_Fixed                                               -0.0610      0.007     -8.969      0.000      -0.074      -0.048
+n_firefighters                                                   0.0564      0.010      5.782      0.000       0.037       0.075
+hr_non_firefighters                                             -0.0307      0.005     -6.118      0.000      -0.041      -0.021
+n_fire_past_1                                                   -0.0095      0.003     -3.154      0.002      -0.015      -0.004
+n_fire_past_7                                                   -0.0036      0.001     -3.861      0.000      -0.005      -0.002
+year                                                            -0.0696      0.016     -4.298      0.000      -0.101      -0.038
+fire_spread_rate                                                -0.0776      0.011     -7.008      0.000      -0.099      -0.056
+relative_humidity                                                0.0193      0.004      4.360      0.000       0.011       0.028
+wind_speed                                                      -0.0255      0.007     -3.835      0.000      -0.039      -0.012
+equipment_Fire_Guard_Building                                   -0.2126      0.044     -4.842      0.000      -0.299      -0.127
+wstation_relative_humidity                                       0.0193      0.005      3.931      0.000       0.010       0.029
+latitude                                                        -0.2344      0.037     -6.333      0.000      -0.307      -0.162
+================================================================================================================================
