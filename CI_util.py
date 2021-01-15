@@ -123,3 +123,9 @@ def CI_T(data, alpha = 0.05):
     m, sigma = np.mean(data), np.std(data)
     l , h = scipy.stats.t.interval(1-alpha, n-1, m, sigma/math.sqrt(n))
     return l, h
+
+# get variance info from index
+def get_variance_info(l, t, p):
+    var_list = loadF("process_data\var_f_optVar"+str(p)+".pkl")
+    return var_list[l,t]
+    

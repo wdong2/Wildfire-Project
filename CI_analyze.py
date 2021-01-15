@@ -1,8 +1,14 @@
 import numpy as np
 import math
 import random
+from scipy import stats
 from data_processing import*
 from data_processing import loadF
+
+# get variance info from index
+def get_variance_info(l, t, p):
+    var_list = loadF("process_data\\var_f_optVar"+str(p)+".pkl")
+    return var_list[l][t]
 
 # arrange float values into 10 intervals: 0-0.1, 0.1-0.2 ... 0.9-1
 def seperate_to_10(data):
@@ -97,7 +103,7 @@ def check_data(filename):
     print(np.mean(target_vals_list), len(target_vals_list))
 
 # get coverage for every case
-def get_info_coverage(filename):
+def get_info_coverage(filename, info_type):
     true_value_list,target_vals_list,clt_inrange,t_inrange,chi_inrange,f_inrange = loadF(filename)
     coverage_list_clt = np.zeros(1210)
     coverage_list_t   = np.zeros(1210)
@@ -125,35 +131,67 @@ def get_info_coverage(filename):
     overall_cov_f   = np.mean(coverage_list_f)
     print("overall coverage (clt,t,chi,f):",overall_cov_clt,overall_cov_t,overall_cov_chi,overall_cov_f)
     
-    cut_point_clt = np.percentile(coverage_list_clt, 0.49)
-    cut_point_t   = np.percentile(coverage_list_t, 0.49)
-    cut_point_chi = np.percentile(coverage_list_chi, 0.49)
-    cut_point_f   = np.percentile(coverage_list_f, 0.49)
-    
-    print("min of clt,t,chi,f ; 0.5 percentile:")
-    print(min(coverage_list_clt), cut_point_clt)
-    print(min(coverage_list_t), cut_point_t)
-    print(min(coverage_list_chi), cut_point_chi)
-    print(min(coverage_list_f), cut_point_f)
-    
-    ind_list_clt = []
-    ind_list_t   = []
-    ind_list_chi = []
-    ind_list_f   = [] 
-    
-    for i in range(1210):
-        if coverage_list_clt[i] <= cut_point_clt:
-            ind_list_clt.append(i)
-        if coverage_list_t[i] <= cut_point_t:
-            ind_list_t.append(i)
-        if coverage_list_chi[i] <= cut_point_chi:
-            ind_list_chi.append(i)
-        if coverage_list_f[i] <= cut_point_f:
-            ind_list_f.append(i)              
-            
-    print("indlist:",ind_list_clt,ind_list_t,ind_list_chi,ind_list_f)
-    saveF([ind_list_clt,ind_list_t,ind_list_chi,ind_list_f], "ind_"+str(int(len(target_vals_list)/1210))+"r.pkl")
-    print("ind_"+str(int(len(target_vals_list)/1210))+"r.pkl")
+    if info_type == "min":
+        cut_point_clt = np.percentile(coverage_list_clt, 0.49)
+        cut_point_t   = np.percentile(coverage_list_t, 0.49)
+        cut_point_chi = np.percentile(coverage_list_chi, 0.49)
+        cut_point_f   = np.percentile(coverage_list_f, 0.49)
+        
+        print("min of clt,t,chi,f ; 0.5 percentile:")
+        print(min(coverage_list_clt), cut_point_clt)
+        print(min(coverage_list_t), cut_point_t)
+        print(min(coverage_list_chi), cut_point_chi)
+        print(min(coverage_list_f), cut_point_f)
+        
+        ind_list_clt = []
+        ind_list_t   = []
+        ind_list_chi = []
+        ind_list_f   = [] 
+        
+        for i in range(1210):
+            if coverage_list_clt[i] <= cut_point_clt:
+                ind_list_clt.append(i)
+            if coverage_list_t[i] <= cut_point_t:
+                ind_list_t.append(i)
+            if coverage_list_chi[i] <= cut_point_chi:
+                ind_list_chi.append(i)
+            if coverage_list_f[i] <= cut_point_f:
+                ind_list_f.append(i)              
+                
+        print("indlist:",ind_list_clt,ind_list_t,ind_list_chi,ind_list_f)
+        saveF([ind_list_clt,ind_list_t,ind_list_chi,ind_list_f], "ind_"+str(int(len(target_vals_list)/1210))+"r.pkl")
+        print("ind_"+str(int(len(target_vals_list)/1210))+"r.pkl")
+        
+    else:
+        cut_point_clt = np.percentile(coverage_list_clt, 99.5)
+        cut_point_t   = np.percentile(coverage_list_t, 99.5)
+        cut_point_chi = np.percentile(coverage_list_chi, 99.5)
+        cut_point_f   = np.percentile(coverage_list_f, 99.5)
+        
+        print("max of clt,t,chi,f ; 99.5 percentile:")
+        print(max(coverage_list_clt), cut_point_clt)
+        print(max(coverage_list_t), cut_point_t)
+        print(max(coverage_list_chi), cut_point_chi)
+        print(max(coverage_list_f), cut_point_f)
+        
+        ind_list_clt = []
+        ind_list_t   = []
+        ind_list_chi = []
+        ind_list_f   = [] 
+        
+        for i in range(1210):
+            if coverage_list_clt[i] >= cut_point_clt:
+                ind_list_clt.append(i)
+            if coverage_list_t[i] >= cut_point_t:
+                ind_list_t.append(i)
+            if coverage_list_chi[i] >= cut_point_chi:
+                ind_list_chi.append(i)
+            if coverage_list_f[i] >= cut_point_f:
+                ind_list_f.append(i)              
+                
+        print("indlist:",ind_list_clt,ind_list_t,ind_list_chi,ind_list_f)
+        saveF([ind_list_clt,ind_list_t,ind_list_chi,ind_list_f], "ind_"+str(int(len(target_vals_list)/1210))+"r_max.pkl")
+        print("ind_"+str(int(len(target_vals_list)/1210))+"r_max.pkl")        
     
     return
 
@@ -165,7 +203,7 @@ def get_name_from_index(list_ind):
         astar = (list_ind[i]//11)%10
         pi_l = (list_ind[i]//11//10)%11
         str_list.append(str(list_ind[i])+ ' -- l:'+str(pi_l)+', t:'+str(pi_t)+', pastar:'+str(astar))
-    return str_list
+    return str_list, pi_l, pi_t, astar
 
 def analyze_mean(mean_file, ind_file, ind = None):
     mean_list = loadF(mean_file)
@@ -174,18 +212,32 @@ def analyze_mean(mean_file, ind_file, ind = None):
     total_list = list(dict.fromkeys(total_list))    
     mean_list = np.array(mean_list).astype(np.float)
     if ind != None:
-        target_mean_list = mean_list[total_list[ind]]
-        if max(target_mean_list) <= 0.3:
-            print("min and max:", min(target_mean_list),max(target_mean_list))
-            target_mean_list *= 7
+        if ind == "inf":
+            for i in total_list:
+                print("=====================================================")
+                target_mean_list = mean_list[i]
+                # normality
+                print(stats.kstest(target_mean_list,'norm'), len(target_mean_list))
+                print("min and max:", min(target_mean_list),max(target_mean_list))
+                target_mean_list -= min(target_mean_list)
+                target_mean_list /= max(target_mean_list) - min(target_mean_list)
+                [ind_name],l,t,p = get_name_from_index([i])
+                print(ind_name)
+                # get variance
+                variance = get_variance_info(l, t, p)
+                print("variance:", variance)
+                ten_val_list = seperate_to_10(target_mean_list)/len(target_mean_list)
+                plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list])   
         else:
+            target_mean_list = mean_list[total_list[ind]]
             print("min and max:", min(target_mean_list),max(target_mean_list))
             target_mean_list -= min(target_mean_list)
             target_mean_list /= max(target_mean_list) - min(target_mean_list)
-        [ind_name] = get_name_from_index([total_list[ind]])
-        print(ind_name)
-        ten_val_list = seperate_to_10(target_mean_list)/len(target_mean_list)
-        plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list])
+            [ind_name,l,t,p] = get_name_from_index([total_list[ind]])
+            print(ind_name)
+            ten_val_list = seperate_to_10(target_mean_list)/len(target_mean_list)
+            plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list])
+        
     else:
         target_mean_list = np.concatenate(mean_list[total_list])
         print(get_name_from_index(total_list))
@@ -200,13 +252,13 @@ def main():
     #analyze_success("400r_CI_result.pkl")
     #percentage_success("400r_CI_result.pkl")
     #check_data("400r_CI_result1.pkl")
-    get_info_coverage("400r_CI_result.pkl")
+    #get_info_coverage("400r_CI_result.pkl","max")  #this
     #analyze_mean("mean_401r.pkl","ind_401r.pkl")
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",8)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",7)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",6)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",5)
-    analyze_mean("mean_401r.pkl","ind_401r.pkl",4)
+    analyze_mean("mean_401r.pkl","ind_401r.pkl","inf")
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",3)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",2)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",1)
