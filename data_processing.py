@@ -121,12 +121,16 @@ def get_pil_pit():
     return pi_l_list, pi_t_list
 #-----------------------------------------------------------------
 # plot histalgram
-def plot_hist(suptitle, l, data, y_low_limit = 0, y_high_limit = 1):
+def plot_hist(suptitle, l, data, min_x = 0, max_x=10, y_low_limit = 0, y_high_limit = 1):
     fig = plt.figure()
     fig.subplots_adjust(hspace = 0.1, wspace = 0.1)
     fig.suptitle(suptitle)
-    width = 0.9
+    
+    width = 0.09*(max_x-min_x)
     x = np.arange(len(data[0]))
+    
+    x = np.array([0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0])*(max_x-min_x)+min_x
+    print(x)
     
     for i in range (0,l):
         ax = fig.add_subplot(1, l, i+1)

@@ -41,7 +41,7 @@ def worst_p_star(pi_l, pi_t, F, T):
     p_return = p.value
     return result, p_return
 
-def calculate_variance(pi_l, pi_t, p, F, T, fix_p, p_fix):
+def calculate_variance(pi_l, pi_t, p, F, T, fix_p = False, p_fix = None):
     '''
     calculate the variance based on the worst p star value
     '''
@@ -216,7 +216,7 @@ def optimize(imp_sam = False, opt_mode = "variance", print_detail = False, fix_p
                     print("variance:", variance)         
                     print("F:", F)
                 # store variable for plot
-                F_IS[l].append(F[-1])   
+                F_IS[l].append(F.T[0])   
                 worst_p_star_list[l].append(p)     
                 variance_list[l].append(variance)
     
@@ -240,10 +240,11 @@ def optimize(imp_sam = False, opt_mode = "variance", print_detail = False, fix_p
             
     else:
         F_IS = np.array(F_IS).astype(np.float)
+        print('F_IS',F_IS)
         worst_p_star_list = np.array(worst_p_star_list).astype(np.float)
-        dp.saveF(F_IS,  fpath + "F_IS" + id + ".pkl")
-        dp.saveF(worst_p_star_list, fpath + "worst_p_star_list_IS" + id + ".pkl")
-        dp.saveF(variance_list, fpath + "var_IS" + id + ".pkl")
+        #dp.saveF(F_IS,  fpath + "F_IS" + id + ".pkl")
+        #dp.saveF(worst_p_star_list, fpath + "worst_p_star_list_IS" + id + ".pkl")
+        #dp.saveF(variance_list, fpath + "var_IS" + id + ".pkl")
         print("F_IS => F_IS.pkl, worst_p_star_list is saved in worst_p_star_list_IS.pkl file, variance => var_IS.pkl" + fpath)
     
     # The optimal Lagrange multiplier for a constraint is stored in
@@ -253,28 +254,30 @@ def optimize(imp_sam = False, opt_mode = "variance", print_detail = False, fix_p
 #=======================================================================================
 
 def main():
-    # the bool var of whether print all the detail
-    print_detail = False
+    
     # whether this is for importance sampling or f method
     imp_sam = False
     # optimization mode ("variance" or "regret"), only for f method not IS
     opt_mode = "regret"
+    # the bool var of whether print all the detail
+    print_detail = False    
     
     # get result
     #optimize(imp_sam, opt_mode, print_detail)
     
-    #optimize(True,None,False)
-    fix_p = True
-    index_p = 0
-    p_file = dp.loadF("h1.pkl")
-    p_fix = 0       
-    for i in range(10):
-        index_p = i
-        p_fix = np.array(p_file[index_p]).astype(np.float)        
-        optimize(False, "variance", False, True, p_fix, str(i))
+    optimize(True,None,True)
     
-    if fix_p == True:
-        print("fix p_star:",p_fix)
+    #fix_p = True
+    #index_p = 0
+    #p_file = dp.loadF("h1.pkl")
+    #p_fix = 0       
+    #for i in range(10):
+        #index_p = i
+        #p_fix = np.array(p_file[index_p]).astype(np.float)        
+        #optimize(False, "variance", False, True, p_fix, str(i))
+    
+    #if fix_p == True:
+        #print("fix p_star:",p_fix)
     
     print("Done!")
 

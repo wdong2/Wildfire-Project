@@ -59,7 +59,7 @@ def analyze_fail(filename):
         ten_value_list = seperate_to_10(target_data)
         ten_value_list /= len(target_data)
         target_data_list.append(ten_value_list)
-    plot_hist("Histalgram of true value not in CI (clt, t, chi, f)", len(method_list), target_data_list, 0, 0.25)
+    plot_hist("Histalgram of true value not in CI (clt, t, chi, f)", len(method_list), target_data_list, 0, 10, 0, 0.25)
     
 # index: (0:clt, 1:t, 2:chi, 3:f)  
 def analyze_success(filename):
@@ -75,7 +75,7 @@ def analyze_success(filename):
         ten_value_list = seperate_to_10(target_data)
         ten_value_list /= len(target_data)
         target_data_list.append(ten_value_list)
-    plot_hist("Histalgram of true value in CI (clt, t, chi, f)", len(method_list), target_data_list, 0, 0.25)
+    plot_hist("Histalgram of true value in CI (clt, t, chi, f)", len(method_list), target_data_list, 0, 10, 0, 0.25)
 
 # get percentage success graph of 10 intervals
 def percentage_success(filename):
@@ -120,10 +120,21 @@ def get_info_coverage(filename, info_type):
     
     saveF(case_target_val, "mean_"+str(int(len(target_vals_list)/1210))+"r.pkl")
     
+    # save variance
+    var_mean_list = []
+    for i in range(len(case_target_val)):
+        var_mean_list.append(np.var(case_target_val[i]))
+    saveF(var_mean_list, "var_mean_"+str(int(len(target_vals_list)/1210))+"r.pkl")
+    
     coverage_list_clt /= (len(clt_inrange)/1210)
     coverage_list_t   /= (len(clt_inrange)/1210)
     coverage_list_chi /= (len(clt_inrange)/1210)
     coverage_list_f   /= (len(clt_inrange)/1210)
+    
+    saveF(coverage_list_clt, "coverage_clt.pkl")
+    saveF(coverage_list_t, "coverage_t.pkl")
+    saveF(coverage_list_chi, "coverage_chi.pkl")
+    saveF(coverage_list_f, "coverage_f.pkl")
     
     overall_cov_clt = np.mean(coverage_list_clt)
     overall_cov_t   = np.mean(coverage_list_t)
@@ -217,17 +228,19 @@ def analyze_mean(mean_file, ind_file, ind = None):
                 print("=====================================================")
                 target_mean_list = mean_list[i]
                 # normality
-                print(stats.kstest(target_mean_list,'norm'), len(target_mean_list))
-                print("min and max:", min(target_mean_list),max(target_mean_list))
-                target_mean_list -= min(target_mean_list)
-                target_mean_list /= max(target_mean_list) - min(target_mean_list)
+                print(stats.normaltest(target_mean_list))
+                min_x = min(target_mean_list)
+                max_x = max(target_mean_list)
+                print("min and max:", min_x,max_x)
+                target_mean_list -= min_x
+                target_mean_list /= max_x - min_x
                 [ind_name],l,t,p = get_name_from_index([i])
                 print(ind_name)
                 # get variance
                 variance = get_variance_info(l, t, p)
                 print("variance:", variance)
                 ten_val_list = seperate_to_10(target_mean_list)/len(target_mean_list)
-                plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list])   
+                plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list], min_x, max_x)   
         else:
             target_mean_list = mean_list[total_list[ind]]
             print("min and max:", min(target_mean_list),max(target_mean_list))
@@ -246,6 +259,87 @@ def analyze_mean(mean_file, ind_file, ind = None):
 
     return
 
+def scatter_plot(coverage_file,seperate_variance = False, variance_file = None):
+    coverage = loadF(coverage_file)
+    if seperate_variance == False:
+        # get x and y
+        x = []
+        y = coverage
+        for l in range(11):
+            for p in range(10):
+                for t in range(11):
+                    variance = get_variance_info(l, t, p)
+                    x.append(variance)
+        
+        # calculate covariance
+        covariance = stats.pearsonr(x,y)
+        print(covariance)
+        
+        # plot
+        plt.scatter(x,y,s=0.6,color='blue')
+        plt.xlabel('variance by formula')
+        plt.ylabel('coverage')
+        plt.show()
+    elif seperate_variance == "mean":
+        variance = loadF(variance_file)
+        # calculate covariance
+        covariance = stats.pearsonr(variance,coverage)
+        print(covariance)        
+        plt.scatter(variance,coverage,s=0.6,color='blue')
+        plt.xlabel('variance by 401 instance')
+        plt.ylabel('coverage')
+        plt.show()     
+    elif seperate_variance == "VvsV":
+        variance_ins = loadF(variance_file)
+        x = []
+        for l in range(11):
+            for p in range(10):
+                for t in range(11):
+                    variance = get_variance_info(l, t, p)
+                    x.append(variance)     
+        variance_formula = x
+        # calculate covariance
+        covariance = stats.pearsonr(variance_ins,variance_formula)     
+        print(covariance)
+        plt.scatter(variance_ins,variance_formula,s=0.6,color='blue')
+        plt.xlabel('variance by 401 instance')
+        plt.ylabel('variance by formula')
+        plt.show()           
+    
+    else:
+        x1 = []
+        x2 = []
+        y1 = []
+        y2 = []
+        i = 0
+        for l in range(11):
+            for p in range(10):
+                for t in range(11):
+                    variance = get_variance_info(l, t, p)
+                    if variance <= seperate_variance:
+                        x1.append(variance)     
+                        y1.append(coverage[i])
+                    else:
+                        x2.append(variance)
+                        y2.append(coverage[i])
+                    i += 1
+        print("len for <= "+ str(seperate_variance)+": "+str(len(x1)))
+        print("len for >  "+ str(seperate_variance)+": "+str(len(x2)))
+        # calculate covariance
+        covariance1 = stats.pearsonr(x1,y1)
+        covariance2 = stats.pearsonr(x2,y2)
+        print("covarance <= "+str(seperate_variance),covariance1)     
+        print("covarance >  "+str(seperate_variance),covariance2)  
+        # plot
+        plt.scatter(x1,y1,s=0.7,color='blue')
+        plt.xlabel('variance by formula <= '+str(seperate_variance))
+        plt.ylabel('coverage')
+        plt.show()      
+        plt.scatter(x2,y2,s=0.7,color='blue')
+        plt.xlabel('variance by formula > '+str(seperate_variance))
+        plt.ylabel('coverage')
+        plt.show()         
+
 # main function
 def main():
     #analyze_value("100r_CI_result.pkl")
@@ -258,11 +352,12 @@ def main():
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",7)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",6)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",5)
-    analyze_mean("mean_401r.pkl","ind_401r.pkl","inf")
+    #analyze_mean("mean_401r.pkl","ind_401r.pkl","inf")
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",3)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",2)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",1)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",0)
+    scatter_plot("coverage_t.pkl","VvsV","var_mean_401r.pkl")
     print("DONE!")
     
 main()
