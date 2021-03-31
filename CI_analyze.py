@@ -103,7 +103,7 @@ def check_data(filename):
     print(np.mean(target_vals_list), len(target_vals_list))
 
 # get coverage for every case
-def get_info_coverage(filename, info_type):
+def get_info_coverage(filename, info_type, estimator = "MMR"):
     true_value_list,target_vals_list,clt_inrange,t_inrange,chi_inrange,f_inrange = loadF(filename)
     coverage_list_clt = np.zeros(1210)
     coverage_list_t   = np.zeros(1210)
@@ -118,23 +118,23 @@ def get_info_coverage(filename, info_type):
         coverage_list_f[i%1210]   += f_inrange[i]
         case_target_val[i%1210].append(target_vals_list[i])
     
-    saveF(case_target_val, "mean_"+str(int(len(target_vals_list)/1210))+"r.pkl")
+    saveF(case_target_val, "mean_"+str(int(len(target_vals_list)/1210))+"r_"+estimator+".pkl")
     
     # save variance
     var_mean_list = []
     for i in range(len(case_target_val)):
         var_mean_list.append(np.var(case_target_val[i]))
-    saveF(var_mean_list, "var_mean_"+str(int(len(target_vals_list)/1210))+"r.pkl")
+    saveF(var_mean_list, "var_mean_"+str(int(len(target_vals_list)/1210))+"r_"+estimator+".pkl")
     
     coverage_list_clt /= (len(clt_inrange)/1210)
     coverage_list_t   /= (len(clt_inrange)/1210)
     coverage_list_chi /= (len(clt_inrange)/1210)
     coverage_list_f   /= (len(clt_inrange)/1210)
     
-    saveF(coverage_list_clt, "coverage_clt.pkl")
-    saveF(coverage_list_t, "coverage_t.pkl")
-    saveF(coverage_list_chi, "coverage_chi.pkl")
-    saveF(coverage_list_f, "coverage_f.pkl")
+    saveF(coverage_list_clt, "coverage_clt_"+estimator+".pkl")
+    saveF(coverage_list_t, "coverage_t_"+estimator+".pkl")
+    saveF(coverage_list_chi, "coverage_chi_"+estimator+".pkl")
+    saveF(coverage_list_f, "coverage_f_"+estimator+".pkl")
     
     overall_cov_clt = np.mean(coverage_list_clt)
     overall_cov_t   = np.mean(coverage_list_t)
@@ -170,8 +170,8 @@ def get_info_coverage(filename, info_type):
                 ind_list_f.append(i)              
                 
         print("indlist:",ind_list_clt,ind_list_t,ind_list_chi,ind_list_f)
-        saveF([ind_list_clt,ind_list_t,ind_list_chi,ind_list_f], "ind_"+str(int(len(target_vals_list)/1210))+"r.pkl")
-        print("ind_"+str(int(len(target_vals_list)/1210))+"r.pkl")
+        saveF([ind_list_clt,ind_list_t,ind_list_chi,ind_list_f], "ind_"+str(int(len(target_vals_list)/1210))+"r_"+estimator+".pkl")
+        print("ind_"+str(int(len(target_vals_list)/1210))+"r_"+estimator+".pkl")
         
     else:
         cut_point_clt = np.percentile(coverage_list_clt, 99.5)
@@ -201,8 +201,8 @@ def get_info_coverage(filename, info_type):
                 ind_list_f.append(i)              
                 
         print("indlist:",ind_list_clt,ind_list_t,ind_list_chi,ind_list_f)
-        saveF([ind_list_clt,ind_list_t,ind_list_chi,ind_list_f], "ind_"+str(int(len(target_vals_list)/1210))+"r_max.pkl")
-        print("ind_"+str(int(len(target_vals_list)/1210))+"r_max.pkl")        
+        saveF([ind_list_clt,ind_list_t,ind_list_chi,ind_list_f], "ind_"+str(int(len(target_vals_list)/1210))+"r_max_"+estimator+".pkl")
+        print("ind_"+str(int(len(target_vals_list)/1210))+"r_max_"+estimator+".pkl")        
     
     return
 
@@ -240,16 +240,22 @@ def analyze_mean(mean_file, ind_file, ind = None):
                 variance = get_variance_info(l, t, p)
                 print("variance:", variance)
                 ten_val_list = seperate_to_10(target_mean_list)/len(target_mean_list)
-                plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list], min_x, max_x)   
+                plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list], min_x, max_x,0,1,"Estimates")   
         else:
-            target_mean_list = mean_list[total_list[ind]]
-            print("min and max:", min(target_mean_list),max(target_mean_list))
-            target_mean_list -= min(target_mean_list)
-            target_mean_list /= max(target_mean_list) - min(target_mean_list)
-            [ind_name,l,t,p] = get_name_from_index([total_list[ind]])
+            target_mean_list = mean_list[ind]
+            print(stats.normaltest(target_mean_list))
+            min_x = min(target_mean_list)
+            max_x = max(target_mean_list)
+            print("min and max:", min_x,max_x)
+            target_mean_list -= min_x
+            target_mean_list /= max_x - min_x
+            [ind_name],l,t,p = get_name_from_index([ind])
             print(ind_name)
+            # get variance
+            variance = get_variance_info(l, t, p)
+            print("variance:", variance)            
             ten_val_list = seperate_to_10(target_mean_list)/len(target_mean_list)
-            plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list])
+            plot_hist(str(len(mean_list[0]))+"r Histalgram of mean value with small coverage ("+ind_name[:3]+")", 1, [ten_val_list], min_x, max_x,0,1,"Estimates")
         
     else:
         target_mean_list = np.concatenate(mean_list[total_list])
@@ -259,8 +265,11 @@ def analyze_mean(mean_file, ind_file, ind = None):
 
     return
 
+# coverage_file: coverage_t.pkl, coverage_clt.pkl, coverage_f.pkl, coverage_chi.pkl
+# variance_file: var_mean_401r.pkl, var_mean_250r.pkl
 def scatter_plot(coverage_file,seperate_variance = False, variance_file = None):
     coverage = loadF(coverage_file)
+    fig = plt.figure()
     if seperate_variance == False:
         # get x and y
         x = []
@@ -280,15 +289,17 @@ def scatter_plot(coverage_file,seperate_variance = False, variance_file = None):
         plt.xlabel('variance by formula')
         plt.ylabel('coverage')
         plt.show()
+        fig.savefig('1'+'.pdf',bbox_inches='tight')
     elif seperate_variance == "mean":
         variance = loadF(variance_file)
         # calculate covariance
         covariance = stats.pearsonr(variance,coverage)
         print(covariance)        
         plt.scatter(variance,coverage,s=0.6,color='blue')
-        plt.xlabel('variance by 401 instance')
+        plt.xlabel('variance by 400 instance')
         plt.ylabel('coverage')
         plt.show()     
+        fig.savefig('2'+'.pdf',bbox_inches='tight')
     elif seperate_variance == "VvsV":
         variance_ins = loadF(variance_file)
         x = []
@@ -302,10 +313,10 @@ def scatter_plot(coverage_file,seperate_variance = False, variance_file = None):
         covariance = stats.pearsonr(variance_ins,variance_formula)     
         print(covariance)
         plt.scatter(variance_ins,variance_formula,s=0.6,color='blue')
-        plt.xlabel('variance by 401 instance')
+        plt.xlabel('variance by 400 instance')
         plt.ylabel('variance by formula')
         plt.show()           
-    
+        fig.savefig('3'+'.pdf',bbox_inches='tight')
     else:
         x1 = []
         x2 = []
@@ -334,11 +345,22 @@ def scatter_plot(coverage_file,seperate_variance = False, variance_file = None):
         plt.scatter(x1,y1,s=0.7,color='blue')
         plt.xlabel('variance by formula <= '+str(seperate_variance))
         plt.ylabel('coverage')
-        plt.show()      
+        plt.show()     
+        fig.savefig('4'+'.pdf',bbox_inches='tight')
         plt.scatter(x2,y2,s=0.7,color='blue')
         plt.xlabel('variance by formula > '+str(seperate_variance))
         plt.ylabel('coverage')
-        plt.show()         
+        plt.show()    
+        fig.savefig('5'+'.pdf',bbox_inches='tight')
+    
+def combine_array(file1,file2):
+    f1 = np.array(loadF(file1))
+    f2 = np.array(loadF(file2))
+    f = np.concatenate((f1,f2),axis=1)
+    print(len(f),len(f[0]))
+    saveF(f,"400r_CI_result_MMR.pkl")
+    return
+    
 
 # main function
 def main():
@@ -346,18 +368,24 @@ def main():
     #analyze_success("400r_CI_result.pkl")
     #percentage_success("400r_CI_result.pkl")
     #check_data("400r_CI_result1.pkl")
-    #get_info_coverage("400r_CI_result.pkl","max")  #this
-    #analyze_mean("mean_401r.pkl","ind_401r.pkl")
+    #get_info_coverage("400r_CI_result_MMR.pkl","max","MMR")  #this runs first
+    #analyze_mean("mean_250r.pkl","ind_250r.pkl","inf")
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",8)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",7)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",6)
     #analyze_mean("mean_401r.pkl","ind_401r.pkl",5)
-    #analyze_mean("mean_401r.pkl","ind_401r.pkl","inf")
-    #analyze_mean("mean_401r.pkl","ind_401r.pkl",3)
-    #analyze_mean("mean_401r.pkl","ind_401r.pkl",2)
-    #analyze_mean("mean_401r.pkl","ind_401r.pkl",1)
-    #analyze_mean("mean_401r.pkl","ind_401r.pkl",0)
-    scatter_plot("coverage_t.pkl","VvsV","var_mean_401r.pkl")
+    analyze_mean("mean_401r_MMR.pkl","ind_401r_max_MMR.pkl",446)
+    analyze_mean("mean_401r_MMR.pkl","ind_401r_MMR.pkl",671)
+    analyze_mean("mean_401r.pkl","ind_401r_max.pkl",653)
+    analyze_mean("mean_401r.pkl","ind_401r.pkl",859)
+    analyze_mean("mean_250r.pkl","ind_250r.pkl",210)
+    #scatter_plot("coverage_t.pkl","VvsV","var_mean_401r.pkl")
+    #scatter_plot("coverage_chi.pkl","mean","var_mean_401r.pkl")
+    #scatter_plot("coverage_f.pkl","mean","var_mean_401r.pkl")
+    #scatter_plot("coverage_clt.pkl","mean","var_mean_401r.pkl")
+    #scatter_plot("coverage_t.pkl","mean","var_mean_401r.pkl")
+    #combine_array("100r_CI_result_MMR.pkl","300r_CI_result_MMR.pkl")
+    #print(get_name_from_index([671,446]))
     print("DONE!")
     
 main()

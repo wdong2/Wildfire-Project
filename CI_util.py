@@ -80,6 +80,9 @@ def solve_w_max (policy_value, r0):
     constraints = [w>=0, sum(w)==1, -cp.sum(cp.log(n*w)) <= -cp.log(r0)]   
     prob = cp.Problem(objective, constraints)
     result = prob.solve(solver=cp.SCS)    
+    if result == None:
+        print("None found CI_util.py line 84")
+        result = 1000      
     w_v = w.value
     return result, w_v
 
@@ -91,6 +94,9 @@ def solve_w_min (policy_value, r0):
     constraints = [w>=0, sum(w)==1, -cp.sum(cp.log(n*w)) <= -cp.log(r0)]  
     prob = cp.Problem(objective, constraints)
     result = prob.solve(solver=cp.SCS)    
+    if result == None:
+        print("None found CI_util.py line 84")
+        result = -1000      
     w_v = w.value
     return result, w_v
 

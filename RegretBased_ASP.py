@@ -166,11 +166,6 @@ def run_calculate_t(fname = "F_0_1_optVar.pkl", p_astar = None):
     if fname == "F_IS.pkl":
         f1 = loadF(fname)
         f0 = np.zeros((len(f1),len(f1[0]),len(f1[0][0])))
-        print("f11",f1[1][8])
-        if np.dot(pi_l_list[0],f1[0][0])==1:
-            print("true")
-        else:
-            print(np.dot(pi_l_list[0],f1[0][0]))
     else:
         f0,f1 = loadF(fname)
     t_list = []
@@ -193,12 +188,13 @@ def run_calculate_t(fname = "F_0_1_optVar.pkl", p_astar = None):
             print(np.round(t_list[l][t],4),end=" ")
         print("")    
 
-def calculate_diff(fname1="T_ASP_Minmax_R.pkl", fname2="T_ASP_Minmax.pkl"):
+# difference of t
+def calculate_diff(fname1="T_ASP_Minmax_R.pkl", fname2="T_ASP_Minmax.pkl", content="t"):
     t1 = np.array(loadF(fname1))
     t2 = np.array(loadF(fname2))
     t_list = t1-t2
     k = len(t_list)
-    print("t value of "+fname1+" - "+fname2)
+    print(content+" value of "+fname1+" - "+fname2)
     for l in range(k):
         print("pi_l =",l)
         for t in range(k):
@@ -206,14 +202,74 @@ def calculate_diff(fname1="T_ASP_Minmax_R.pkl", fname2="T_ASP_Minmax.pkl"):
         print("")   
     flat_t_list = t_list.flatten()
     print("max:",max(flat_t_list), " mean:", np.mean(flat_t_list), " min:",min(flat_t_list))
-    
 
+# 4.6 single pi_l pi_t
+def compute_regret(B,D,f):
+    regret_list = np.zeros(len(D))
+    for i in range(len(D)):
+        Di = D[i]
+        temp = np.dot(np.dot(B.T,Di),B)
+        first_part = sqrtm(np.linalg.inv(temp))
+        second_part = np.dot(np.dot(B.T,Di),f)
+        regret = norm(np.dot(first_part,second_part),2)
+        regret_list[i] = regret
+    regret_list = np.round(regret_list,4)
+    return regret_list
+
+# 4.6
+def calculate_regret(fname="F_0_1_optVar.pkl", p_astar = "H1"):
+    pi_l_list, pi_t_list = get_pil_pit()
+    if fname == "F_IS.pkl":
+        f1 = loadF(fname)
+        f0 = np.zeros((len(f1),len(f1[0]),len(f1[0][0])))
+    else:
+        f0,f1 = loadF(fname)    
+    if p_astar == "H1":
+        p_astar = np.array(dp.loadF("float_h1.pkl"))
+    p_astar = np.array(p_astar).astype(np.float)
+    regret_list = []
+    for l in range(len(pi_l_list)):
+        regret_list.append([])
+        for t in range(len(pi_t_list)):
+            f = np.concatenate((f0[l][t],f1[l][t]),axis=None)
+            pi_t = pi_t_list[t]
+            Pi_l,B,D,A,D_bar = build_variables(pi_l_list[l],p_astar)    
+            regret = compute_regret(B,D,f)
+            regret_list[l].append(regret)
+    regret_list = np.array(regret_list)
+    saveF(regret_list,"Reg_ASP_IS.pkl")
+    for l in range(len(pi_l_list)):
+        print("pi_l =",l)
+        for t in range(len(pi_t_list)):
+            print(np.round(regret_list[l][t],4),end=" ")
+        print("")       
+
+def plot_his(fname = "Reg_ASP_IS.pkl"):
+    data = loadF(fname)
+    data = np.array(data)
+    data = data.flatten()
+    max_d = 2.5
+    min_d = 0
+    range_d = max_d - min_d
+    plot_data = np.zeros(10)
+    for r in range(10):
+        for i in range(len(data)):
+            if data[i]<(min_d+ (r+1)*range_d/10) and data[i]>=(min_d+ r*range_d/10):
+                plot_data[r]+=1
+    
+    
+    plot_data/=len(data)
+    print(sum(plot_data[2:]))
+    plot_hist(fname[:-4]+" histogram", 1, [plot_data], min_d, max_d, y_low_limit = 0, y_high_limit = 0.6, x_label = "regret", y_label = "percentage")
+    
 def main():
     #rho = 0.0001
     #run_experiment_ASP(rho)
     #run_calculate_t("F_IS.pkl")
     #calculate_diff("T_ASP_Minmax_R.pkl", "T_ASP_IS.pkl")
-    calculate_diff("T_ASP_RIS.pkl", "T_ASP_IS.pkl")
+    #calculate_diff("Reg_ASP_IS.pkl", "Reg_ASP_RIS.pkl", "regret")
+    plot_his("Reg_ASP_RIS.pkl")
+    #calculate_regret("F_IS.pkl")
     
 main()
             

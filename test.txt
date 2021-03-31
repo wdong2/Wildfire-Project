@@ -1,3 +1,0 @@
-Turn process_data to True to be able to run the data_processing main function (debuging, ignore this)
-F_IS => F_IS.pkl, worst_p_star_list is saved in worst_p_star_list_IS.pkl file, variance => var_IS.pkl
-Done!

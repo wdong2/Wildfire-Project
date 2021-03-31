@@ -121,10 +121,10 @@ def get_pil_pit():
     return pi_l_list, pi_t_list
 #-----------------------------------------------------------------
 # plot histalgram
-def plot_hist(suptitle, l, data, min_x = 0, max_x=10, y_low_limit = 0, y_high_limit = 1):
+def plot_hist(suptitle, l, data, min_x = 0, max_x=10, y_low_limit = 0, y_high_limit = 1, x_label = "mean", y_label = "percentage"):
     fig = plt.figure()
     fig.subplots_adjust(hspace = 0.1, wspace = 0.1)
-    fig.suptitle(suptitle)
+    #fig.suptitle(suptitle)
     
     width = 0.09*(max_x-min_x)
     x = np.arange(len(data[0]))
@@ -141,7 +141,11 @@ def plot_hist(suptitle, l, data, min_x = 0, max_x=10, y_low_limit = 0, y_high_li
     for ax in fig.get_axes():
         ax.label_outer()
     
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
     plt.show()
+    
+    fig.savefig(suptitle+'.pdf',bbox_inches='tight')
     return
 #-----------------------------------------------------------------
 # lower triangle matrix

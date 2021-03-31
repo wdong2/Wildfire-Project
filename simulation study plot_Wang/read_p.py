@@ -5,6 +5,12 @@ import pickle
 import numpy as np
 #@@@@@@@@@@@@@@@@@@@@@
 
+#######################################
+# Read a .csv file into .pkl file
+# change filename for .csv file and change filename_save for the .pkl file
+# the format of .pkl is a list which has 2 index out.pkl[a][b]: a is column number and b is row number
+#######################################
+
 
 def readP_csv(file_name):
     process_data1 = []

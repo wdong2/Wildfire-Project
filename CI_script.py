@@ -19,7 +19,6 @@ def run_CI(runs, n_ins, methods, astar_file):
     t_inrange = []
     chi_inrange = []
     f_inrange = []
-    temp_seed = [180,181,182]
     for i in range(runs):
         print("run",i)
         for j in range(n_pi_l):
@@ -28,7 +27,7 @@ def run_CI(runs, n_ins, methods, astar_file):
                 p_astar = np.array(p_file[k]).astype(np.float) 
                 for l in range(n_pi_t):
                     pi_t = pi_t_list[l]
-                    ins = CI.get_delta(n_ins, p_astar, pi_l, temp_seed[i]) 
+                    ins = CI.get_delta(n_ins, p_astar, pi_l, i) 
                     true_value = CI.policy_value(pi_t, p_astar)
                     true_value_list.append(true_value)
                     target_vals = CI.off_policy_target_values(ins, j, l, k)
