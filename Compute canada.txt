@@ -1,0 +1,42 @@
+Get into compute canada on terminal:
+ssh [your compute canada account] (e.g. mine is wdong2@cedar.computecanada.ca)
+
+Module switching and checking: (my code is based on python3, by default, it is python2)
+module load python/3.6.3
+module avail
+module list
+
+Run script:
+sbatch [$job].sh
+Check job queuse:
+squeue -u [userid (e.g. mine is wdong2)]
+sacct -j [$jobid$]
+
+Example script setting:
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH --gres=gpu:2
+#SBATCH --time=144:00:00
+#SBATCH --job-name=wdong2_job
+#SBATCH --mem=10000  
+#SBATCH --cpus-per-task=10
+pip install numpy
+pip install cvxpy
+pip install matplotlib
+python3 CI_script.py >> CI_out.txt
+
+Install mudules if nedded, for example: (--user is for access)
+pip3 install --user cvxpy
+
+Before run the script, you need a virtual environment.
+Example for create virtual environment:
+virtualenv --no-download ~/scratch/wang
+Example for activate virtual environment:
+source ~/scratch/wang/bin/activate
+
+Checking info:
+sinfo
+
+Other terminal commands:
+cd: change directory
+ls: list of contents
